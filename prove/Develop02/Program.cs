@@ -1,22 +1,19 @@
 using System;
 using System.IO;
-
+// above and beyond: you can type the number or the word to choose an option. EX: 1 or write, 2 or display... ETC
 class Program
 {
   static void Main(string[] args)
   {
-    Entry newEntry = new Entry();
-    PromptGenerator generator = new PromptGenerator();
     Journal myJournal = new Journal();
-    PromptGenerator gen = new PromptGenerator();
-    gen._prompts.Add("Who was the most interesting person I interacted with today?");
-    gen._prompts.Add("What was the best part of my day?");
-    gen._prompts.Add("How did I see the hand of the Lord in my life today?");
-    gen._prompts.Add("What was the strongest emotion I felt today?");
-    gen._prompts.Add("If I had one thing I could do over today, what would it be?");
+    PromptGenerator prompts = new PromptGenerator();
+    prompts._prompts.Add("Who was the most interesting person I interacted with today?");
+    prompts._prompts.Add("What was the best part of my day?");
+    prompts._prompts.Add("How did I see the hand of the Lord in my life today?");
+    prompts._prompts.Add("What was the strongest emotion I felt today?");
+    prompts._prompts.Add("If I had one thing I could do over today, what would it be?");
     string userInput = "0";
-    int input = 0;
-    while (input != 5)
+    while (userInput != "5" || userInput.ToLower() != "quit")
     {
       Console.WriteLine("Please select one of the following choices: ");
       Console.WriteLine("1. Write");
@@ -26,40 +23,40 @@ class Program
       Console.WriteLine("5. Quit");
       Console.Write("What would you like to do? ");
       userInput = Console.ReadLine();
-      input = int.Parse(userInput);
-      if (input == 1)
+      if (userInput == "1" || userInput.ToLower() == "write")
       {
-        newEntry._promptText = generator.GetRandomPrompt();
+        Entry newEntry = new Entry();
+        newEntry._promptText = prompts.GetRandomPrompt();
         Console.WriteLine(newEntry._promptText);
         Console.Write("> ");
-        newEntry._entryText = Console.ReadLine();
+        string enter = Console.ReadLine();
+        Console.WriteLine(enter);
+        newEntry._entryText = enter;
         DateTime theCurrentTime = DateTime.Now;
         newEntry._date = theCurrentTime.ToShortDateString();
-        newEntry._date = "test";
         myJournal.AddEntry(newEntry);
       }
-      else if (input == 2)
+      else if (userInput == "2" || userInput.ToLower() == "display")
       {
         myJournal.DisplayAll();
       }
-      else if (input == 3)
+      else if (userInput == "3" || userInput.ToLower() == "load")
       {
         Console.WriteLine("What is the file to read from? ");
         string file = Console.ReadLine();
         myJournal.LoadFromFile(file);
       }
-      else if (input == 4)
+      else if (userInput == "4" || userInput.ToLower() == "save")
       {
         Console.WriteLine("What is the file to save to? ");
         string file = Console.ReadLine();
         myJournal.SaveToFile(file);
       }
-      else if (input == 5)
+      else if (userInput == "5" || userInput.ToLower() == "quit")
       {
         return;
       }
-
-
+      Console.WriteLine("");
     }
   }
 }
