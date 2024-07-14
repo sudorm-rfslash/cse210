@@ -5,15 +5,18 @@ using System.Runtime.CompilerServices;
 public class Scripture
 {
   Reference _reference;
-  List<Word> _words;
-
-  public Scripture(Reference Reference, String text)
+  List<Word> _words= new List<Word>{};
+  
+  public Scripture(Reference reference, String text)
   {
-    _reference = Reference;
+    _reference = reference;
     string[] words = text.Split(' ');
     foreach (String word in words)
     {
-      _words[0] = new Word(word);
+      Word temp = new Word(word);
+      _words.Add(temp);
+
+
     }
 
   }
