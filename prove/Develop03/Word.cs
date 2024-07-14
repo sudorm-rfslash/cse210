@@ -31,7 +31,7 @@ public class Word
       string val = "";
       foreach (char letter in _text)
       {
-        string result = $"{val}_";
+        val = $"{val}_";
       }
       return val;
     }
