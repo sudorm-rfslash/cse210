@@ -1,3 +1,5 @@
+using System.Runtime.InteropServices;
+
 public class Activity
 {
   protected string _name;
@@ -6,20 +8,29 @@ public class Activity
 
   public Activity()
   {
-
+  
   }
 
   public void DisplayStartingMessage()
   {
     Console.WriteLine(_name);
-    Console.WriteLine("Enter how Many seconds: ");
-    _duration = int.Parse(Console.ReadLine());
+    Console.WriteLine("");
     Console.WriteLine(_description);
+    Console.WriteLine("");
+    ShowSpinner(5);
+    Console.Write("How long, in seconds would you like for your session? ");
+    _duration = int.Parse(Console.ReadLine());
+    Console.WriteLine();
   }
 
   public void DisplayEndingMessage()
   {
-    Console.WriteLine("Yay you did it!");
+    Console.WriteLine("Well done!!");
+    ShowSpinner(5);
+    Console.WriteLine("");
+    Console.WriteLine($"You have completed another {_duration} seconds of the Breathing Activity.");
+    ShowSpinner(5);
+    Console.Clear();
   }
 
   public void ShowSpinner(int seconds)
@@ -48,6 +59,6 @@ public class Activity
       if (seconds >= 10) Console.Write("\b \b\b ");
       seconds--;
     }
-    Console.Write("\b");
+    Console.Write("\b ");
   }
 }

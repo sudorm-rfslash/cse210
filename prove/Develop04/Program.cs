@@ -1,5 +1,5 @@
 using System;
-
+// for my above and beyond project I added a feature to type in custom intervals for the breathing activity.
 class Program
 {
   static void Main(string[] args)
