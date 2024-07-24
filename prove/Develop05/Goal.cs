@@ -15,7 +15,15 @@ public abstract class Goal
 
   public abstract void RecordEvent();
   public abstract bool IsComplete();
-  public abstract string GetDetailString();
   public abstract string GetStringRepresentation();
+  
+  public virtual string GetDetailString()
+  {
+    string box = "";
+    if (IsComplete()) box = "[X]";
+    else box = "[ ]";
+    return $"{box} {_shortName} ({_description})";
+  }
+
 
 }
