@@ -1,3 +1,5 @@
+using System.Diagnostics;
+
 class Lecture : Event
 {
   private string _speaker;
@@ -6,5 +8,11 @@ class Lecture : Event
   {
     _speaker = speaker;
     _capacity = capacity;
+    SetEventType("Lecture");
+  }
+
+  public override string GetFullDetails()
+  {
+    return base.GetFullDetails() + $"\nSpeaker: {_speaker}\nCapacity: {_capacity}";
   }
 }

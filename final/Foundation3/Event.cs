@@ -1,3 +1,5 @@
+using System.Diagnostics;
+
 class Event
 {
   private string _title;
@@ -5,6 +7,7 @@ class Event
   private string _date;
   private string _time;
   private Address _address;
+  private string _eventType = "";
 
   public Event(string title, string desc, string date, string time, Address address)
   {
@@ -17,16 +20,21 @@ class Event
 
   public string GetStandardDetails()
   {
-    return $"{_title}: {_description} - {_date} {_time} - Address: {_address}";
+    return $"\nStandard Description:\nWhat: {_title}: {_description}\nWhen: {_date} {_time}\nWhere: {_address.GetFullAddress()}";
   }
 
-  public string GetFullDetails()
+  public virtual string GetFullDetails()
   {
-    return $"{_title}: {_description} - {_date} {_time} - Address: {_address}";
+    return $"\nDetailed Description:\n{_eventType}: {_title}: {_description}\nWhen: {_date} {_time}\nWhere: {_address.GetFullAddress()}";
   }
 
   public string GetShortDescription()
   {
-    return $"{_title}: {_description} - {_date} {_time} - Address: {_address}";
+    return $"\nShort Description:\n{_eventType}\n{_title} @ {_date} {_time}";
+  }
+
+  public void SetEventType(string eventType)
+  {
+    _eventType = eventType;
   }
 }
